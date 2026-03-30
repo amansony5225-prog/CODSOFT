@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Generator</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      transition: 0.5s;
+      background: #f4f4f4;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #code {
+      font-size: 24px;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .generate {
+      background: black;
+      color: white;
+    }
+
+    .copy {
+      background: #007bff;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🎨 Color Generator</h1>
+    <div id="code">#FFFFFF</div>
+    <button class="generate" onclick="changeColor()">Generate Color</button>
+    <button class="copy" onclick="copyColor()">Copy Code</button>
+  </div>
+
+  <script>
+    function changeColor() {
+      const hex = "0123456789ABCDEF";
+      let color = "#";
+
+      for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+      }
+
+      document.body.style.background = color;
+      document.getElementById("code").innerText = color;
+    }
+
+    function copyColor() {
+      const color = document.getElementById("code").innerText;
+      navigator.clipboard.writeText(color);
+      alert("Copied: " + color);
+    }
+  </script>
+
+</body>
+</html>

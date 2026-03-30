@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, rgb(224,225,221), rgb(249,243,247));
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.hello {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(9,29,51);
+}
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgb(13,27,42);
+  margin-top: 20px;
+}
+.desc {
+  font-size: 1rem;
+  color: rgb(9,29,51);
+  margin-top: 15px;
+}
+
+/* BUTTON */
+.btn-primary {
+  background-color: rgb(20,72,128);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  background-color: rgb(13,71,161);
+}
+
+/* NAVBAR */
+.navbar-brand {
+  font-size: 26px;
+  font-weight: 800;
+  color: rgb(13,71,161) !important;
+}
+.nav-link {
+  color: rgb(9,29,51) !important;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #fff !important;
+  background-color: rgb(13,71,161) !important;
+}
+
+/* CARDS */
+.card {
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* FOOTER */
+.footer {
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .desc {
+    font-size: 0.9rem;
+  }
+}

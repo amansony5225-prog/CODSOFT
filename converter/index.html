@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Converter</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 100px;
+            text-align: center;
+            color: white;
+        }
+        input, select {
+            height: 40px;
+            width: 300px;
+            font-size: 20px;
+            font-weight: bolder;
+            text-align: center;
+            background-color: antiquewhite;
+            border-radius: 20px;
+            margin: 10px;
+        }
+        button {
+            height: 50px;
+            width: 120px;
+            font-size: 18px;
+            margin: 10px;
+            color: white;
+            background-color: rgb(65, 52, 52);
+            border-radius: 20px;
+        }
+        #result {
+            margin-top: 30px;
+            font-size: 20px;
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="margin-bottom: 30px; font-size: 30px;">DISTANCE CONVERTER</h2>
+    
+    <input type="number" id="distance" placeholder="Enter value">
+    <br>
+    <select id="fromUnit">
+        <option value="mm">Millimeters</option>                
+        <option value="cm">Centimeters</option>
+        <option value="dm">Decimeters</option>
+        <option value="m" selected>Meters</option>
+        <option value="dam">Decameters</option>
+        <option value="hm">Hectometers</option>
+        <option value="km">Kilometers</option>
+    </select>
+    <br>
+    <select id="toUnit">
+        <option value="mm">Millimeters</option>
+        <option value="cm">Centimeters</option>
+        <option value="dm">Decimeters</option>
+        <option value="m">Meters</option>
+        <option value="dam">Decameters</option>
+        <option value="hm">Hectometers</option>
+        <option value="km" selected>Kilometers</option>
+    </select>
+    <br><br>
+    <button onclick="convert()">Convert</button>
+    <button onclick="clearResult()">Clear</button>
+
+    <div id="result"></div>
+
+    <script>
+        const unitFactors = {
+            mm: 0.001, 
+            cm: 0.01,
+            dm: 0.1,
+            m: 1,
+            dam: 10,
+            hm: 100,
+            km: 1000
+        };
+
+        function convert() {
+            var value = parseFloat(document.getElementById("distance").value);
+            var fromUnit = document.getElementById("fromUnit").value;
+            var toUnit = document.getElementById("toUnit").value;
+
+            if (isNaN(value)) {
+                alert("Please enter a valid number");
+                return;
+            }
+
+            // Convert input to meters first, then to target unit
+            var meters = value * unitFactors[fromUnit];
+            var resultValue = meters / unitFactors[toUnit];
+
+            document.getElementById("result").innerHTML =
+                value + " " + fromUnit + " = " + resultValue + " " + toUnit;
+        }
+
+        function clearResult() {
+            document.getElementById("distance").value = "";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

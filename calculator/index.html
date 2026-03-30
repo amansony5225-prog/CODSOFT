@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+body {
+    background-color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+#display {
+    width: 280px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    margin: 8px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #d4d4d4;
+}
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+}
+
+#aman {
+    background-color: #4a90e2;
+    color: #fff;
+    font-weight: bold;
+}
+
+#aman:hover {
+    background-color: #357ab8;
+}
+
+input:disabled {
+    background-color: #ffffff;
+}
+    </style>
+</head>
+<body>
+    <h2 style="color: white; margin-bottom: 50px; font-size: 30px;">CALCULATOR</h2>
+    <input type="text" id="display" disabled>
+    <br><br>
+<div class="button-grid">
+    <button onclick="addToDisplay('7')">7</button>
+    <button onclick="addToDisplay('8')">8</button>
+    <button onclick="addToDisplay('9')">9</button>
+    <button id="aman" onclick="setOperator('/')">/</button>
+
+    <button onclick="addToDisplay('4')">4</button>
+    <button onclick="addToDisplay('5')">5</button>
+    <button onclick="addToDisplay('6')">6</button>
+    <button id="aman" onclick="setOperator('*')">*</button>
+
+    <button onclick="addToDisplay('1')">1</button>
+    <button onclick="addToDisplay('2')">2</button>
+    <button onclick="addToDisplay('3')">3</button>
+    <button id="aman" onclick="setOperator('-')">-</button>
+
+    <button onclick="addToDisplay('0')">0</button>
+    <button id="aman" onclick="clearDisplay()">C</button>
+    <button id="aman" onclick="calculate()">=</button>
+    <button id="aman" onclick="setOperator('+')">+</button>
+</div>
+
+    <script>
+        let firstNumber = "";
+        let secondNumber = "";
+        let operator = "";
+
+        function addToDisplay(value) {
+            if (operator === "") {
+                firstNumber += value;
+                document.getElementById("display").value = firstNumber;
+            } else {
+                secondNumber += value;
+                document.getElementById("display").value = firstNumber + " " + operator + " " + secondNumber;
+            }
+        }
+
+        function setOperator(op) {
+            if (firstNumber === "") {
+                alert("Enter a number first");
+                return;
+            }
+            operator = op;
+            document.getElementById("display").value = firstNumber + " " + operator;
+        }
+
+        function clearDisplay() {
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+            document.getElementById("display").value = "";
+        }
+
+        function calculate() {
+            let num1 = parseFloat(firstNumber);
+            let num2 = parseFloat(secondNumber);
+            let result = 0;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Invalid input");
+                return;
+            }
+
+            if (operator === "+") {
+                result = num1 + num2;
+            } else if (operator === "-") {
+                result = num1 - num2;
+            } else if (operator === "*") {
+                result = num1 * num2;
+            } else if (operator === "/") {
+                if (num2 === 0) {
+                    alert("Cannot divide by zero");
+                    return;
+                }
+                result = num1 / num2;
+            }
+
+            document.getElementById("display").value = result;
+            // Reset for next calculation
+            firstNumber = result.toString();
+            secondNumber = "";
+            operator = "";
+        }
+    </script>
+</body>
+</html>
